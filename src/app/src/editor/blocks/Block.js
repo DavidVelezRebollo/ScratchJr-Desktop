@@ -6,6 +6,7 @@ import {setProps, setCanvasSize, scaleMultiplier} from '../../utils/lib';
 export default class Block {
     constructor (spec, isPalette, scale) {
         this.div = document.createElement('div');
+        console.log(`Block Constructor. Specs: ${spec}, isPalette: ${isPalette}, scale: ${scale}`)
 
         // Top-level block parent shouldn't accept pointer events
         setProps(this.div.style, {
@@ -61,6 +62,7 @@ export default class Block {
     }
 
     setBlockshapeFromSpecs (spec, isPalette, scale) {
+        console.log(`SetBlockshapeFromSpecs`)
         this.spec = spec;
         this.isReporter = (spec[1] == 'reporter');
         this.blocktype = spec[0];
@@ -166,6 +168,8 @@ export default class Block {
     }
 
     drawBlock () {
+        console.log("Draw Block");
+        
         var cnv = this.blockshape;
         var ctx = this.blockshape.getContext('2d');
         ctx.clearRect(0, 0, cnv.width, cnv.height);

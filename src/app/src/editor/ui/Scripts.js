@@ -43,6 +43,7 @@ export default class Scripts {
     ////////////////////////////////////////////////
 
     scriptsMouseDown (e) {
+        console.log("Mouse down");
         if (isTablet && e.touches && (e.touches.length > 1)) {
             return;
         }

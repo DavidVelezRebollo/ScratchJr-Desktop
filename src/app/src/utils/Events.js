@@ -105,7 +105,6 @@ export default class Events {
         frameDiv.appendChild(dragDiv);
     }
     static startDrag (e, c, atstart, atend, atdrag, atclick, athold) {
-        console.log("Start Drag");
         dragged = false;
         var pt = Events.getTargetPoint(e);
         dragmousex = pt.x;
@@ -121,11 +120,10 @@ export default class Events {
         updatefcn = atdrag;
         if (isTablet) { // startDrag event setting
             delta = 10 * scaleMultiplier;
-            window.onpointermove = function (evt) {
+            window.onmousemove = function (evt) {
                 Events.mouseMove(evt);
             };
-            window.onpointerup = function (evt) {
-                console.log("Mouse Up");
+            window.onmouseup = function (evt) {
                 Events.mouseUp(evt);
             };
             window.ontouchleave = function (evt) {
@@ -136,10 +134,10 @@ export default class Events {
             };
         } else {
             delta = 7;
-            window.onpointermove = function (evt) {
+            window.onmousemove = function (evt) {
                 Events.mouseMove(evt);
             };
-            window.onpointerup = function (evt) {
+            window.onmouseup = function (evt) {
                 Events.mouseUp(evt);
             };
         }
@@ -191,7 +189,6 @@ export default class Events {
     }
 
     static mouseUp (e) {
-        console.log("Mouse Up " + e);
         if (timeoutEvent) {
             clearTimeout(timeoutEvent);
         }
@@ -215,19 +212,18 @@ export default class Events {
 
     static clearEvents () {
         if (isTablet) { // clearEvents
-            window.onpointermove = undefined;
-            window.onpointerup = undefined;
+            window.onmousemove = undefined;
+            window.onmouseup = undefined;
         } else {
-            window.onpointermove = function (e) {
+            window.onmousemove = function (e) {
                 e.preventDefault();
             };
-            window.onpointerup = undefined;
+            window.onmouseup = undefined;
         }
     }
 
     static performMouseUpAction (e) {
         if (fcnend) {
-            console.log(e, dragcanvas)
             fcnend(e, dragcanvas);
         }
     }

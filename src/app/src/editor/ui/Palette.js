@@ -48,7 +48,7 @@ export default class Palette {
         Palette.createCategorySelectors(parent);
         var div = newHTML('div', 'palette', parent);
         div.setAttribute('id', 'palette');
-        div.onpointerdown = function (evt) {
+        div.onmousedown = function (evt) {
             Palette.paletteMouseDown(evt);
         };
         var pc = newHTML('div', 'papercut', parent);
@@ -257,7 +257,6 @@ export default class Palette {
     }
 
     static prepareForDrag (e) {
-        console.log("PrepareForDrag "+ e);
         e.preventDefault();
         ScratchAudio.sndFX('grab.wav');
         if (!ScratchJr.runtime.inactive()) {
@@ -321,7 +320,7 @@ export default class Palette {
             zIndex: 8,
             visibility: 'hidden'
         });
-        div.onpointerdown = function (evt) {
+        div.onmousedown = function (evt) {
             Palette.clickOnCategory(evt);
         };
     }
@@ -470,7 +469,7 @@ export default class Palette {
             };
         }
         if (isTablet) {
-            div.onpointerdown = Palette.recordSound;
+            div.onmousedown = Palette.recordSound;
         }
     }
 

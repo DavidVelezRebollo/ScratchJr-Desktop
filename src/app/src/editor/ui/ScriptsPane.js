@@ -174,7 +174,6 @@ export default class ScriptsPane {
         var sc = ScratchJr.getActiveScript();
         var spr = sc.owner.spr.id;
         var page = ScratchJr.stage.currentPage;
-        console.log(el, e);
         switch (Palette.getLandingPlace(el, e)) {
         case 'scripts':
             var dx = localx(sc, el.left);
@@ -269,17 +268,17 @@ export default class ScriptsPane {
 
     static setDragBackgroundEvents (fcnmove, fcnup) {
         if (isTablet) { // setDragBackgroundEvents
-            window.onpointermove = function (evt) {
+            window.onmousemove = function (evt) {
                 fcnmove(evt);
             };
-            window.onpointerup = function (evt) {
+            window.onmouseup = function (evt) {
                 fcnup(evt);
             };
         } else {
-            window.onpointermove = function (evt) {
+            window.onmousemove = function (evt) {
                 fcnmove(evt);
             };
-            window.onpointerup = function (evt) {
+            window.onmouseup = function (evt) {
                 fcnup(evt);
             };
         }
